@@ -21,7 +21,8 @@ const tiers = [
     name: "Canopy",
     emoji: "🌳",
     range: "75–100",
-    description: "Your community has reached the highest GreenStreet level.",
+    description:
+      "Your community has reached the highest GreenStreet level.",
   },
 ];
 
@@ -52,44 +53,71 @@ const pointTypes = [
   },
 ];
 
-const rewards = [
+const tierRewards = [
   {
-    title: "Community recognition",
-    emoji: "🏅",
-    description:
-      "Show your postcode's GreenStreet level and celebrate progress together.",
+    name: "Seedling",
+    emoji: "🌱",
+    requiredScore: 0,
+    reward: "GreenStreet community badge",
   },
   {
-    title: "Sustainable discounts",
-    emoji: "🎟️",
-    description:
-      "Prototype rewards could include discounts from sustainable or local partners.",
+    name: "Sprout",
+    emoji: "🌿",
+    requiredScore: 25,
+    reward: "Sustainable local partner discount",
   },
   {
-    title: "Freebies",
-    emoji: "🎁",
-    description:
-      "Communities could unlock small sustainability-related rewards as they progress.",
+    name: "Bloom",
+    emoji: "🌸",
+    requiredScore: 50,
+    reward: "Sustainability-focused freebie",
   },
   {
-    title: "Neighbourhood competition",
-    emoji: "🏘️",
-    description:
-      "Postcodes could compete for both the greenest area and the most improved area.",
+    name: "Canopy",
+    emoji: "🌳",
+    requiredScore: 75,
+    reward: "Highest-level community reward",
   },
 ];
 
 export default function AwardsPage() {
+  // Prototype score for the hackathon demo
+  const demoScore = 38;
+
+  const currentTier =
+    demoScore >= 75
+      ? "Canopy 🌳"
+      : demoScore >= 50
+      ? "Bloom 🌸"
+      : demoScore >= 25
+      ? "Sprout 🌿"
+      : "Seedling 🌱";
+
+  const nextTarget =
+    demoScore < 25
+      ? 25
+      : demoScore < 50
+      ? 50
+      : demoScore < 75
+      ? 75
+      : 100;
+
+  const pointsToNext = Math.max(
+    nextTarget - demoScore,
+    0
+  );
+
   return (
     <main className="min-h-screen bg-green-100 p-10">
       <div className="max-w-6xl mx-auto">
+        {/* PAGE TITLE */}
         <h1 className="text-4xl font-bold text-green-600 text-center mb-3">
           GreenStreet Awards 🏆
         </h1>
 
         <p className="text-gray-600 text-center mb-10">
-          Work together with your postcode community to earn points and grow
-          through the GreenStreet levels.
+          Work together with your postcode community to earn
+          points and grow through the GreenStreet levels.
         </p>
 
         {/* LEVELS */}
@@ -124,6 +152,48 @@ export default function AwardsPage() {
           </div>
         </section>
 
+        {/* CURRENT POSTCODE PROGRESS */}
+        <section className="mt-12">
+          <div className="bg-white border-2 border-green-600 rounded-xl p-8 max-w-3xl mx-auto shadow-sm">
+            <h2 className="text-2xl font-bold text-green-600 text-center mb-4">
+              Your Postcode Progress
+            </h2>
+
+            <p className="text-center text-4xl font-bold text-gray-800 mb-2">
+              {demoScore} / 100
+            </p>
+
+            <p className="text-center text-xl font-semibold text-green-600 mb-5">
+              {currentTier}
+            </p>
+
+            <div className="w-full bg-gray-200 rounded-full h-5 mb-3">
+              <div
+                className="bg-green-600 h-5 rounded-full transition-all duration-500"
+                style={{
+                  width: `${demoScore}%`,
+                }}
+              />
+            </div>
+
+            {demoScore < 75 ? (
+              <p className="text-center text-gray-600">
+                {pointsToNext} points until the next
+                GreenStreet level.
+              </p>
+            ) : (
+              <p className="text-center text-gray-600">
+                Your postcode has reached the highest
+                GreenStreet level!
+              </p>
+            )}
+
+            <p className="text-xs text-gray-400 text-center mt-4">
+              Prototype score shown for demonstration.
+            </p>
+          </div>
+        </section>
+
         {/* POINTS */}
         <section className="mt-14">
           <h2 className="text-2xl font-bold text-green-600 text-center mb-3">
@@ -131,8 +201,8 @@ export default function AwardsPage() {
           </h2>
 
           <p className="text-gray-600 text-center mb-6">
-            Bigger sustainability actions can contribute more points to your
-            postcode community.
+            Bigger sustainability actions can contribute more
+            points to your postcode community.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -167,61 +237,95 @@ export default function AwardsPage() {
 
         {/* SCORE EXPLANATION */}
         <section className="mt-14">
-          <div className="bg-white border-2 border-green-600 rounded-xl p-8">
+          <div className="bg-white border-2 border-green-600 rounded-xl p-8 shadow-sm">
             <h2 className="text-2xl font-bold text-green-600 text-center mb-4">
               How does your postcode level grow?
             </h2>
 
             <p className="text-gray-700 text-center max-w-3xl mx-auto">
-              Your postcode score is designed to combine local environmental
-              conditions with community participation. Environmental data such
-              as air quality, carbon intensity and nearby green space can form
-              part of the baseline, while completed actions and community
-              participation help the postcode progress.
+              Your postcode score is designed to combine local
+              environmental conditions with community
+              participation. Environmental data such as air
+              quality, carbon intensity and nearby green space
+              can form part of the baseline, while completed
+              actions and community participation help the
+              postcode progress.
             </p>
 
             <p className="text-sm text-gray-500 text-center mt-4">
-              The final scoring formula is still a prototype and would need
-              further testing to keep comparisons fair between postcodes of
-              different sizes.
+              The scoring formula is still a prototype and would
+              need further testing to keep comparisons fair
+              between postcodes of different sizes.
             </p>
           </div>
         </section>
 
-        {/* REWARDS */}
+        {/* DYNAMIC REWARDS */}
         <section className="mt-14">
           <h2 className="text-2xl font-bold text-green-600 text-center mb-3">
             GreenStreet Rewards 🎁
           </h2>
 
           <p className="text-gray-600 text-center mb-6">
-            As a postcode progresses, the community could unlock recognition
-            and sustainability-focused rewards.
+            Grow your postcode level to unlock new community
+            rewards.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {rewards.map((reward) => (
-              <div
-                key={reward.title}
-                className="bg-white border-2 border-green-600 rounded-xl p-6 text-center shadow-sm"
-              >
-                <p className="text-4xl mb-3">
-                  {reward.emoji}
-                </p>
+            {tierRewards.map((reward) => {
+              const unlocked =
+                demoScore >= reward.requiredScore;
 
-                <h3 className="text-lg font-bold text-green-600 mb-2">
-                  {reward.title}
-                </h3>
+              const pointsNeeded = Math.max(
+                reward.requiredScore - demoScore,
+                0
+              );
 
-                <p className="text-sm text-gray-600">
-                  {reward.description}
-                </p>
-              </div>
-            ))}
+              return (
+                <div
+                  key={reward.name}
+                  className={`rounded-xl p-6 text-center border-2 shadow-sm ${
+                    unlocked
+                      ? "bg-white border-green-600"
+                      : "bg-gray-100 border-gray-300"
+                  }`}
+                >
+                  <p className="text-4xl mb-3">
+                    {unlocked
+                      ? reward.emoji
+                      : "🔒"}
+                  </p>
+
+                  <h3
+                    className={`text-xl font-bold ${
+                      unlocked
+                        ? "text-green-600"
+                        : "text-gray-500"
+                    }`}
+                  >
+                    {reward.name}
+                  </h3>
+
+                  <p className="text-gray-700 mt-3">
+                    {reward.reward}
+                  </p>
+
+                  {unlocked ? (
+                    <p className="text-green-600 font-semibold mt-4">
+                      ✓ Unlocked
+                    </p>
+                  ) : (
+                    <p className="text-gray-500 text-sm mt-4">
+                      {pointsNeeded} points needed
+                    </p>
+                  )}
+                </div>
+              );
+            })}
           </div>
 
           <p className="text-xs text-gray-500 text-center mt-6">
-            Reward examples shown here are prototype concepts and are not
+            Reward examples are prototype concepts and are not
             confirmed Postcode Lottery rewards.
           </p>
         </section>
