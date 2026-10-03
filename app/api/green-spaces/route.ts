@@ -28,20 +28,49 @@ export async function GET(request: Request) {
       `?categories=leisure.park` +
       `&filter=circle:${longitude},${latitude},1000` +
       `&bias=proximity:${longitude},${latitude}` +
-      `&limit=100` +
+      `&limit=20` +
       `&apiKey=${apiKey}`;
 
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      cache: "no-store",
+    });
 
     if (!response.ok) {
       throw new Error(`Geoapify error: ${response.status}`);
     }
 
     const data = await response.json();
-    console.log("Green space client data:", data);
-    
+
+    const allSpaces = (data.features ?? []).map((feature: any) => ({
+  name:
+    feature.properties?.name ||
+    feature.properties?.address_line1 ||
+    feature.properties?.formatted ||
+    "Unnamed green space",
+
+  distance: feature.properties?.distance ?? null,
+
+  latitude: feature.properties?.lat ?? null,
+
+  longitude: feature.properties?.lon ?? null,
+}));
+
+const uniqueSpaces = Array.from(
+  new Map(
+    allSpaces.map((space: any) => [
+      space.name.toLowerCase(),
+      space,
+    ])
+  ).values()
+);
+
+const spaces = uniqueSpaces.slice(0, 5);
+
+    console.log("Geoapify spaces:", spaces);
+
     return NextResponse.json({
       count: data.features?.length ?? 0,
+      spaces,
     });
   } catch (error) {
     console.error("Geoapify error:", error);

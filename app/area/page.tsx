@@ -7,6 +7,7 @@ import AirQualityCard from "@/components/AirQualityCard";
 import CarbonCard from "@/components/CarbonCard";
 import GreenSpaceCard from "@/components/GreenSpaceCard";
 import RecommendationCard from "@/components/RecommendationCard";
+import StreetChallenge from "@/components/StreetChallenge";
 
 export default function AreaPage() {
   const searchParams = useSearchParams();
@@ -57,6 +58,12 @@ export default function AreaPage() {
         carbonIntensity={carbonIntensity}
         greenSpaceCount={greenSpaceCount}
       />
+
+<StreetChallenge
+  airQuality={airQuality}
+  carbonIntensity={carbonIntensity}
+  greenSpaceCount={greenSpaceCount}
+/>
     </main>
-  );
+  )
 }
