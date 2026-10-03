@@ -1,12 +1,21 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function PostCodeSearch() {
   const [postcode, setPostcode] = useState("");
-
-  function search() {
-    console.log("Searching for:", postcode);
+  const router = useRouter();
+  async function search() {
+    const response = await fetch(`https://api.postcodes.io/postcodes/${postcode}`);
+    const data = await response.json();
+    if (response.ok) {
+router.push(
+  `/area?postcode=${encodeURIComponent(data.result.postcode)}&latitude=${data.result.latitude}&longitude=${data.result.longitude}&region=${encodeURIComponent(data.result.region ?? "")}&adminDistrict=${encodeURIComponent(data.result.admin_district ?? "")}`
+);
+} else {
+  console.error("Error wrong postcode:", data.error);
+}
   }
 
  return (
