@@ -17,6 +17,7 @@ export default function RecommendationCard({
     ) {
       return "Analysing your local area...";
     }
+// Recommendations are rule-based so they remain transparent and explainable.
 
     if (carbonIntensity >= 250) {
       return "⚡ Electricity is relatively carbon-intensive right now. Consider delaying non-essential energy-heavy tasks such as laundry or dishwashing.";

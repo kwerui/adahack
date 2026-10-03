@@ -31,7 +31,7 @@ export default function AirQualityCard({
 
         if (data.current?.european_aqi !== undefined) {
           const value = data.current.european_aqi;
-
+        // Keep a local value for this card and also report it back to AreaPage so recommendations and challenges can reuse the same AQI result.
           setAirQuality(value);
           onData(value);
         } else {

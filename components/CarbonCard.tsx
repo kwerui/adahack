@@ -19,6 +19,7 @@ export default function CarbonCard({
       if (!postcode) return;
 
       try {
+        // The Carbon Intensity API uses the outward part of the postcode, e.g. "EH8".
         const outwardPostcode = postcode.split(" ")[0];
 
         const response = await fetch(
@@ -33,6 +34,7 @@ export default function CarbonCard({
           data.data?.[0]?.data?.[0]?.intensity?.forecast;
 
         if (intensity !== undefined) {
+          // Store the value locally and pass it back to AreaPage for shared use.
           setCarbonIntensity(intensity);
           onData(intensity);
         } else {

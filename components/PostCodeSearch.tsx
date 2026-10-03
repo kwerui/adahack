@@ -24,7 +24,7 @@ export default function PostCodeSearch() {
       `&adminDistrict=${encodeURIComponent(
         result.admin_district ?? ""
       )}`;
-
+    // Save the last viewed area so the Dashboard can reopen it later.
     localStorage.setItem("lastAreaUrl", areaUrl);
 
     router.push(areaUrl);
@@ -82,6 +82,7 @@ export default function PostCodeSearch() {
           position.coords.longitude;
 
         try {
+          // Convert browser coordinates into the nearest UK postcode.
           const response = await fetch(
             `https://api.postcodes.io/postcodes?lon=${longitude}&lat=${latitude}`
           );

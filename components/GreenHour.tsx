@@ -78,7 +78,7 @@ export default function GreenHour({
           setError("Green Hour forecast unavailable");
           return;
         }
-
+        // Keep only future forecast periods that contain a valid carbon value.
         const validPeriods = periods.filter(
           (period: ForecastPeriod) =>
             typeof period.intensity?.forecast === "number" &&
@@ -89,7 +89,7 @@ export default function GreenHour({
           setError("Green Hour forecast unavailable");
           return;
         }
-
+        // Compare all valid periods and keep the one with the lowest forecast intensity.
         const lowestPeriod =
           validPeriods.reduce(
             (

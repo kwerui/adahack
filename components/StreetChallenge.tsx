@@ -71,6 +71,7 @@ export default function StreetChallenge({
     }
 
     // Only categories that make sense for this postcode
+    // Build a list of challenge categories that are relevant to current local conditions.
     const relevantCategories: {
       name: string;
       challenges: string[];
@@ -125,6 +126,7 @@ export default function StreetChallenge({
     }
 
     // Choose a relevant category randomly
+    // Randomly choose only from relevant categories, rather than from every challenge.
     const selectedCategory =
       relevantCategories[
         Math.floor(Math.random() * relevantCategories.length)

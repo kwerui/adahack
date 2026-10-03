@@ -12,7 +12,7 @@ export async function GET(request: Request) {
       { status: 400 }
     );
   }
-
+  // Read the key server-side so it is not exposed in client-side JavaScript.
   const apiKey = process.env.GEOAPIFY_API_KEY;
 
   if (!apiKey) {
@@ -54,7 +54,8 @@ export async function GET(request: Request) {
 
   longitude: feature.properties?.lon ?? null,
 }));
-
+// Geoapify can return multiple features with the same place name,
+// so deduplicate results before displaying them.
 const uniqueSpaces = Array.from(
   new Map(
     allSpaces.map((space: any) => [
