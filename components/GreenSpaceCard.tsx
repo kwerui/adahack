@@ -5,11 +5,13 @@ import { useEffect, useState } from "react";
 type GreenSpaceProps = {
   latitude: string | null;
   longitude: string | null;
+  onData: (value: number) => void;
 };
 
 export default function GreenSpaceCard({
   latitude,
   longitude,
+  onData,
 }: GreenSpaceProps) {
   const [greenSpaceCount, setGreenSpaceCount] = useState<number | null>(null);
   const [error, setError] = useState("");
@@ -33,14 +35,15 @@ export default function GreenSpaceCard({
         }
 
         setGreenSpaceCount(data.count);
+        onData(data.count);
       } catch (error) {
-        console.error(error);
+        console.error("Green space error:", error);
         setError("Could not load green spaces");
       }
     }
 
     getGreenSpaceData();
-  }, [latitude, longitude]);
+  }, [latitude, longitude, onData]);
 
   return (
     <div className="bg-white text-gray-800 border-2 border-green-600 rounded-xl p-6 text-center w-60 h-48 flex flex-col justify-center">

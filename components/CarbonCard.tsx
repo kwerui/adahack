@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 
 type CarbonCardProps = {
   postcode: string | null;
+  onData: (value: number) => void;
 };
 
 export default function CarbonCard({
   postcode,
+  onData,
 }: CarbonCardProps) {
   const [carbonIntensity, setCarbonIntensity] = useState<number | null>(null);
   const [error, setError] = useState("");
@@ -32,6 +34,7 @@ export default function CarbonCard({
 
         if (intensity !== undefined) {
           setCarbonIntensity(intensity);
+          onData(intensity);
         } else {
           setError("Carbon intensity data unavailable");
         }
@@ -41,7 +44,7 @@ export default function CarbonCard({
     }
 
     getCarbonIntensity();
-  }, [postcode]);
+  }, [postcode, onData]);
 
   function getCarbonIntensityLabel(value: number) {
     if (value < 100) return "Very Low";
@@ -52,13 +55,13 @@ export default function CarbonCard({
   }
 
   return (
- <div className="bg-white text-gray-800 border-2 border-green-600 rounded-xl p-6 text-center w-60 h-48 flex flex-col justify-center">
-    <h2 className="text-xl font-bold mb-2">
-      ⚡ Carbon Intensity
-    </h2>
+    <div className="bg-white text-gray-800 border-2 border-green-600 rounded-xl p-6 text-center w-60 h-48 flex flex-col justify-center">
+      <h2 className="text-xl font-bold mb-2">
+        ⚡ Carbon Intensity
+      </h2>
 
       {error ? (
-        <p>{error}</p>
+        <p className="text-red-600">{error}</p>
       ) : carbonIntensity === null ? (
         <p>Loading...</p>
       ) : (
