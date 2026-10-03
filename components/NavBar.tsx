@@ -32,7 +32,7 @@ export default function Navbar() {
           onClick={openMyArea}
           className="hover:text-green-600"
         >
-          My Area
+          My Dashboard
         </button>
 
         <Link

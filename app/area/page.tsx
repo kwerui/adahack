@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
-
+import GreenHour from "@/components/GreenHour";
 import AirQualityCard from "@/components/AirQualityCard";
 import CarbonCard from "@/components/CarbonCard";
 import GreenSpaceCard from "@/components/GreenSpaceCard";
@@ -58,6 +58,8 @@ export default function AreaPage() {
         carbonIntensity={carbonIntensity}
         greenSpaceCount={greenSpaceCount}
       />
+
+      <GreenHour postcode={postcode} />
 
 <StreetChallenge
   airQuality={airQuality}
