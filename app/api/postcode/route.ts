@@ -1,34 +1,6 @@
-import { NextResponse } from "next/server";
-
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const postcode = searchParams.get("postcode");
-
-  if (!postcode) {
-    return NextResponse.json(
-      { error: "Postcode is required" },
-      { status: 400 }
-    );
-  }
-
-  const response = await fetch(
-    `https://api.postcodes.io/postcodes/${encodeURIComponent(postcode)}`
-  );
-
-  if (!response.ok) {
-    return NextResponse.json(
-      { error: "Postcode not found" },
-      { status: 404 }
-    );
-  }
-
-  const data = await response.json();
-
-  return NextResponse.json({
-    postcode: data.result.postcode,
-    latitude: data.result.latitude,
-    longitude: data.result.longitude,
-    region: data.result.region,
-    adminDistrict: data.result.admin_district,
-  });
+import { NextResponse } from 'next/server';
+import { lookupPostcode, LookupError } from '@/lib/environment-server';
+export async function GET(request:Request){
+ try {return NextResponse.json(await lookupPostcode(new URL(request.url).searchParams.get('postcode') || ''))}
+ catch(error){return NextResponse.json({error:error instanceof Error?error.message:'Postcode lookup failed.'},{status:error instanceof LookupError?error.status:503})}
 }
