@@ -1,10 +1,3 @@
-Yep — you should have a README that looks like an actual hackathon project README, not just “this is our app” 😭
-
-This version matches what you actually built and keeps prototype/demo features clearly labelled. The project is directly aligned with the challenge goal of showing postcode-level environmental information and encouraging neighbours to act together. :chatgpt-content-reference{index="0"}
-
-Copy this into your root `README.md`:
-
-```md
 # 🌱 GreenStreet
 
 **Make your postcode greener, together.**
