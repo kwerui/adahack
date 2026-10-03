@@ -1,36 +1,203 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌱 GreenStreet
 
-## Getting Started
+**Make your postcode greener, together.**
 
-First, run the development server:
+GreenStreet is a postcode-based sustainability platform built for **AdaHack 2026**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+It helps people understand environmental conditions in their local area and turns that information into practical actions that neighbours can take together.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🔗 **Live Demo:** https://greenerstreet-sigma.vercel.app
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 💡 The Idea
 
-## Learn More
+Environmental data can be difficult to understand and often feels disconnected from everyday life.
 
-To learn more about Next.js, take a look at the following resources:
+GreenStreet makes sustainability local.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Users can enter their postcode — or use their current location — to see information about:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- 🌫️ Local air quality
+- ⚡ Electricity carbon intensity
+- 🌳 Nearby green spaces
+- 💡 Lower-carbon electricity periods
 
-## Deploy on Vercel
+GreenStreet then turns this information into personalised recommendations, local sustainability challenges and community goals.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The idea is simple:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+> **Your postcode is your team.**
+
+---
+
+## ✨ Features
+
+### 📍 Postcode Search
+
+Users can:
+
+- Enter any UK postcode
+- Use their current location
+- Return to their most recently viewed area through **Dashboard**
+
+Postcodes are converted into geographic coordinates using **Postcodes.io**.
+
+---
+
+### 🌫️ Local Air Quality
+
+GreenStreet retrieves current air-quality data using the **Open-Meteo Air Quality API**.
+
+The dashboard displays:
+
+- European AQI
+- A simple air-quality rating
+- Local recommendations based on current conditions
+
+---
+
+### ⚡ Carbon Intensity
+
+The dashboard shows the current electricity carbon intensity for the user's postcode area.
+
+Data comes from the **UK Carbon Intensity API** and is displayed in:
+
+`gCO₂/kWh`
+
+GreenStreet also converts this into simple labels such as:
+
+- Very Low
+- Low
+- Moderate
+- High
+- Very High
+
+---
+
+### ⚡ Green Hour
+
+GreenStreet looks at the next 24 hours of local electricity carbon-intensity forecasts and identifies a lower-carbon period.
+
+Users can see:
+
+- The recommended time period
+- Forecast carbon intensity
+- Suggestions for flexible electricity use
+- A prototype community participation counter
+
+For example, users may choose to run a washing machine or dishwasher during a lower-carbon period.
+
+> Green Hour represents lower-carbon electricity periods, not necessarily cheaper electricity prices.
+
+---
+
+### 🌳 Nearby Green Spaces
+
+Using the **Geoapify Places API**, GreenStreet finds green spaces within approximately 1 km of the selected postcode.
+
+Users can:
+
+- See the number of nearby green spaces
+- Expand the card to view individual locations
+- See approximate distance from their postcode
+
+Duplicate map features are filtered so the same place is not repeatedly displayed.
+
+---
+
+### 💡 Best Action Today
+
+Environmental data is converted into simple, relevant recommendations.
+
+For example:
+
+- Good air quality → consider walking or cycling for a short journey
+- High carbon intensity → consider delaying flexible electricity use
+- Few nearby green spaces → support local greening activities
+- Low carbon intensity → consider using flexible appliances during this period
+
+The recommendation system is currently **rule-based**, allowing decisions to remain simple and explainable.
+
+---
+
+### 🤝 Street Challenges
+
+GreenStreet gives postcode communities sustainability challenges based on local conditions.
+
+Challenge categories include:
+
+- 🚶 Cleaner travel
+- ⚡ Energy use
+- 🌳 Green spaces
+- 🔌 Lower-carbon electricity
+
+Example challenges include:
+
+- Walk instead of driving for a short journey
+- Run a full washing-machine load at 30°C or lower
+- Visit a local green space you have not visited before
+- Use natural daylight when practical
+- Avoid unnecessary engine idling
+
+Users can join a challenge and see prototype neighbourhood participation progress.
+
+---
+
+### 🏆 GreenStreet Awards
+
+Communities progress through four GreenStreet levels:
+
+| Level | Score |
+|---|---:|
+| 🌱 Seedling | 0–24 |
+| 🌿 Sprout | 25–49 |
+| 🌸 Bloom | 50–74 |
+| 🌳 Canopy | 75–100 |
+
+The prototype points system includes:
+
+#### Individual Actions
+
+- Everyday sustainable actions: **5–25 points**
+- Larger household energy shifts: **50–100 points**
+
+#### Community Actions
+
+- Larger neighbourhood sustainability projects can contribute significantly more points.
+
+The Awards page also demonstrates potential sustainability-focused rewards such as:
+
+- Community recognition
+- Local partner discounts
+- Sustainability-related freebies
+- Neighbourhood competitions
+
+> Rewards and scores shown in the current prototype are demonstration concepts and are not confirmed People's Postcode Lottery rewards.
+
+---
+
+## 🧠 How It Works
+
+The main data flow is:
+
+```text
+User enters postcode
+        ↓
+Postcodes.io
+        ↓
+Postcode + latitude + longitude
+        ↓
+Area Dashboard
+        ↓
+ ┌─────────────────────────────┐
+ │ Open-Meteo → Air Quality    │
+ │ Carbon API → Electricity    │
+ │ Geoapify → Green Spaces     │
+ └─────────────────────────────┘
+        ↓
+Recommendations
+        ↓
+Street Challenges
+        ↓
+Community participation
