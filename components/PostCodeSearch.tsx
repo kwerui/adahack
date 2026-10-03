@@ -127,17 +127,17 @@ export default function PostCodeSearch() {
   }
 
   return (
-    <div className="p-8 flex flex-col items-center">
-      <h1 className="text-3xl font-bold mb-2 text-green-600">
-        GreenStreet 🌱
-      </h1>
+<div className="w-full max-w-xl bg-white/90 backdrop-blur rounded-3xl shadow-xl border border-green-100 p-8 sm:p-12 flex flex-col items-center text-center">     
+<h1 className="text-4xl sm:text-5xl font-bold mb-3 text-green-700">
+  GreenStreet 🌱
+</h1>
 
-      <p className="mb-4 text-gray-600">
-        Make your postcode greener, together.
-      </p>
+<p className="mb-7 text-gray-600 text-lg">
+  Make your postcode greener, together.
+</p>
 
-      <div className="flex gap-2">
-        <input
+<div className="flex flex-col sm:flex-row gap-3 w-full">
+            <input
           type="text"
           placeholder="Enter postcode"
           value={postcode}
@@ -149,15 +149,14 @@ export default function PostCodeSearch() {
               search();
             }
           }}
-          className="border border-gray-400 rounded px-3 py-2 text-gray-800"
-        />
+className="flex-1 border border-green-200 bg-green-50/50 rounded-xl px-4 py-3 text-gray-800 outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition"        />
 
-        <button
-          onClick={search}
-          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-        >
-          Search
-        </button>
+<button
+  onClick={search}
+  className="bg-green-600 text-white font-semibold px-6 py-3 rounded-xl shadow-sm hover:bg-green-700 hover:shadow-md transition"
+>
+  Search
+</button>
       </div>
 
       <p className="text-sm text-gray-500 my-3">
@@ -167,8 +166,7 @@ export default function PostCodeSearch() {
       <button
         onClick={useMyLocation}
         disabled={locating}
-        className="border border-green-600 text-green-600 px-4 py-2 rounded hover:bg-green-50 disabled:text-gray-400 disabled:border-gray-400"
-      >
+className="border border-green-300 bg-white text-green-700 font-semibold px-5 py-3 rounded-xl hover:bg-green-50 transition disabled:text-gray-400 disabled:border-gray-300"      >
         {locating
           ? "Finding your location..."
           : "📍 Use my current location"}

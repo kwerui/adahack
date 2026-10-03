@@ -24,14 +24,14 @@ export default function AreaPage() {
 
   return (
     <main className="min-h-screen bg-green-100 flex flex-col items-center gap-6 p-10">
-      <div className="bg-white rounded-xl shadow-md p-8 text-center text-gray-800">
-        <h1 className="text-3xl font-bold text-green-600 mb-4">
-          Area 🌱
-        </h1>
+<div className="bg-white/90 border border-green-200 rounded-3xl shadow-sm p-7 text-center text-gray-800 w-full max-w-xl">
+<h1 className="text-3xl font-bold text-green-700 mb-2">
+  {postcode} 🌱
+</h1>
 
-        <p>Postcode: {postcode}</p>
-        <p>Area: {adminDistrict}</p>
-        <p>Region: {region}</p>
+<p className="text-gray-600">
+  {adminDistrict}, {region}
+</p>
       </div>
 
       <div className="flex flex-wrap justify-center gap-6">

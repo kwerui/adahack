@@ -69,7 +69,7 @@ const spaces = uniqueSpaces.slice(0, 5);
     console.log("Geoapify spaces:", spaces);
 
     return NextResponse.json({
-      count: data.features?.length ?? 0,
+      count: uniqueSpaces.length,
       spaces,
     });
   } catch (error) {

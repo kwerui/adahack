@@ -38,7 +38,7 @@ export default function RecommendationCard({
   }
 
   return (
-    <div className="bg-white text-gray-800 border-2 border-green-600 rounded-xl p-6 text-center w-full max-w-2xl">
+    <div className="bg-white text-gray-800 border border-green-200 rounded-2xl p-6 text-center w-full max-w-2xl shadow-sm">
       <h2 className="text-xl font-bold mb-3">
         💡 Best Action Today
       </h2>

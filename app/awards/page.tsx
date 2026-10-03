@@ -4,18 +4,21 @@ const tiers = [
     emoji: "🌱",
     range: "0–24",
     description: "Your postcode has started its green journey.",
+    style: "bg-lime-50 border-lime-200",
   },
   {
     name: "Sprout",
     emoji: "🌿",
     range: "25–49",
     description: "Your community is building greener habits.",
+    style: "bg-green-50 border-green-200",
   },
   {
     name: "Bloom",
     emoji: "🌸",
     range: "50–74",
     description: "Your postcode is making strong environmental progress.",
+    style: "bg-pink-50 border-pink-200",
   },
   {
     name: "Canopy",
@@ -23,6 +26,7 @@ const tiers = [
     range: "75–100",
     description:
       "Your community has reached the highest GreenStreet level.",
+    style: "bg-emerald-50 border-emerald-200",
   },
 ];
 
@@ -130,7 +134,7 @@ export default function AwardsPage() {
             {tiers.map((tier) => (
               <div
                 key={tier.name}
-                className="bg-white border-2 border-green-600 rounded-xl p-6 text-center shadow-sm"
+className={`${tier.style} border rounded-2xl p-6 text-center shadow-sm hover:shadow-md hover:-translate-y-0.5 transition`}
               >
                 <p className="text-4xl mb-3">
                   {tier.emoji}
@@ -154,7 +158,7 @@ export default function AwardsPage() {
 
         {/* CURRENT POSTCODE PROGRESS */}
         <section className="mt-12">
-          <div className="bg-white border-2 border-green-600 rounded-xl p-8 max-w-3xl mx-auto shadow-sm">
+          <div className="bg-white border border-green-200 rounded-2xl p-8 max-w-3xl mx-auto shadow-sm">
             <h2 className="text-2xl font-bold text-green-600 text-center mb-4">
               Your Postcode Progress
             </h2>
@@ -209,7 +213,7 @@ export default function AwardsPage() {
             {pointTypes.map((type) => (
               <div
                 key={type.title}
-                className="bg-white border-2 border-green-600 rounded-xl p-6 shadow-sm"
+                className="bg-white border border-green-200 rounded-2xl p-6 shadow-sm"
               >
                 <p className="text-3xl mb-3">
                   {type.emoji}
@@ -237,7 +241,7 @@ export default function AwardsPage() {
 
         {/* SCORE EXPLANATION */}
         <section className="mt-14">
-          <div className="bg-white border-2 border-green-600 rounded-xl p-8 shadow-sm">
+          <div className="bg-white border border-green-200 rounded-2xl p-8 shadow-sm">
             <h2 className="text-2xl font-bold text-green-600 text-center mb-4">
               How does your postcode level grow?
             </h2>

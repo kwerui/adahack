@@ -17,35 +17,32 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="w-full flex items-center justify-between px-8 py-4 border-b bg-white">
-      <Link
-        href="/"
-        className="font-bold text-xl text-green-600"
-      >
-        GreenStreet 🌱
-      </Link>
+<nav className="sticky top-0 z-50 w-full flex items-center justify-between px-4 sm:px-8 py-4 border-b border-green-100 bg-white/95 backdrop-blur shadow-sm">      
+<Link
+  href="/"
+  className="font-bold text-xl text-green-700 hover:text-green-800 transition"
+>
+  GreenStreet 🌱
+</Link>
 
-      <div className="flex gap-6 text-gray-700">
-        <Link href="/">Home</Link>
+<div className="flex items-center gap-3 sm:gap-6 text-sm sm:text-base font-medium text-gray-600">
+            <Link href="/">Home</Link>
 
         <button
           onClick={openMyArea}
-          className="hover:text-green-600"
-        >
+className="hover:text-green-700 transition"        >
           My Dashboard
         </button>
 
         <Link
           href="/about"
-          className="hover:text-green-600"
-        >
+className="hover:text-green-700 transition"        >
           About
         </Link>
 
         <Link
           href="/awards"
-          className="hover:text-green-600"
-        >
+className="hover:text-green-700 transition"        >
           Awards
         </Link>
       </div>

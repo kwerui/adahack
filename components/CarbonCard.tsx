@@ -55,8 +55,7 @@ export default function CarbonCard({
   }
 
   return (
-    <div className="bg-white text-gray-800 border-2 border-green-600 rounded-xl p-6 text-center w-60 h-48 flex flex-col justify-center">
-      <h2 className="text-xl font-bold mb-2">
+<div className="bg-white text-gray-800 border border-green-200 rounded-2xl p-6 text-center w-64 min-h-48 flex flex-col justify-center shadow-sm hover:shadow-md hover:-translate-y-0.5 transition">      <h2 className="text-xl font-bold mb-2">
         ⚡ Carbon Intensity
       </h2>
 

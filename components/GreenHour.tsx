@@ -127,8 +127,8 @@ export default function GreenHour({
     });
   }
 
-  return (
-    <div className="bg-white text-gray-800 border-2 border-green-600 rounded-xl p-6 w-full max-w-2xl text-center">
+return (
+  <div className="bg-white text-gray-800 border border-green-200 rounded-2xl p-7 w-full max-w-2xl text-center shadow-sm">
       <h2 className="text-2xl font-bold text-green-600 mb-3">
         ⚡ Green Hour
       </h2>
@@ -173,8 +173,7 @@ export default function GreenHour({
             <button
               onClick={joinGreenHour}
               disabled={joined}
-              className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
-            >
+className="bg-green-600 text-white font-semibold px-6 py-2.5 rounded-full shadow-sm hover:bg-green-700 hover:shadow-md transition disabled:bg-gray-300 disabled:shadow-none disabled:cursor-not-allowed"            >
               {joined
                 ? "Joined ✓"
                 : "Join Green Hour"}
