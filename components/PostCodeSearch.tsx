@@ -127,7 +127,7 @@ export default function PostCodeSearch() {
   }
 
   return (
-<div className="w-full max-w-xl bg-white/90 backdrop-blur rounded-3xl shadow-xl border border-green-100 p-8 sm:p-12 flex flex-col items-center text-center">     
+<div className="w-full max-w-xl bg-white/90 backdrop-blur rounded-3xl shadow-xl border border-green-100 text-4xl sm:text-5xl flex flex-col items-center text-center">     
 <h1 className="text-4xl sm:text-5xl font-bold mb-3 text-green-700">
   GreenStreet 🌱
 </h1>

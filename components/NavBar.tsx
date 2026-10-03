@@ -17,34 +17,49 @@ export default function Navbar() {
   }
 
   return (
-<nav className="sticky top-0 z-50 w-full flex items-center justify-between px-4 sm:px-8 py-4 border-b border-green-100 bg-white/95 backdrop-blur shadow-sm">      
-<Link
-  href="/"
-  className="font-bold text-xl text-green-700 hover:text-green-800 transition"
->
-  GreenStreet 🌱
-</Link>
+    <nav className="sticky top-0 z-50 w-full border-b border-green-100 bg-white/95 backdrop-blur shadow-sm">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8 py-3">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
 
-<div className="flex items-center gap-3 sm:gap-6 text-sm sm:text-base font-medium text-gray-600">
-            <Link href="/">Home</Link>
+          <Link
+            href="/"
+            className="font-bold text-xl text-green-700 hover:text-green-800 transition whitespace-nowrap"
+          >
+            GreenStreet 🌱
+          </Link>
 
-        <button
-          onClick={openMyArea}
-className="hover:text-green-700 transition"        >
-          My Dashboard
-        </button>
+          <div className="grid grid-cols-4 sm:flex items-center w-full sm:w-auto text-center gap-1 sm:gap-6 text-sm sm:text-base font-medium text-gray-600">
 
-        <Link
-          href="/about"
-className="hover:text-green-700 transition"        >
-          About
-        </Link>
+            <Link
+              href="/"
+              className="hover:text-green-700 transition py-1"
+            >
+              Home
+            </Link>
 
-        <Link
-          href="/awards"
-className="hover:text-green-700 transition"        >
-          Awards
-        </Link>
+            <button
+              onClick={openMyArea}
+              className="hover:text-green-700 transition py-1"
+            >
+              Dashboard
+            </button>
+
+            <Link
+              href="/about"
+              className="hover:text-green-700 transition py-1"
+            >
+              About
+            </Link>
+
+            <Link
+              href="/awards"
+              className="hover:text-green-700 transition py-1"
+            >
+              Awards
+            </Link>
+
+          </div>
+        </div>
       </div>
     </nav>
   );
