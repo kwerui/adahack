@@ -3,6 +3,8 @@
 import { useSearchParams } from "next/navigation";
 import AirQualityCard from "@/components/AirQualityCard";
 import CarbonCard from "@/components/CarbonCard";
+import GreenSpaceCard from "@/components/GreenSpaceCard";
+
 export default function AreaPage() {
   const searchParams = useSearchParams();
 
@@ -31,6 +33,11 @@ export default function AreaPage() {
         longitude={longitude}
       />
       <CarbonCard postcode={postcode} />
+
+      <GreenSpaceCard
+        latitude={latitude}
+        longitude={longitude}
+      />
     </main>
   );
 }

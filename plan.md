@@ -37,3 +37,4 @@ click "Why?"
 ↓
 explanation expands
 
+the provided public Overpass API was unreliable in practice for us — 429s, connection refusals, and long timeouts — so we switched data source rather than letting the demo depend on it.
